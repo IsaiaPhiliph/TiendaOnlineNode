@@ -95,9 +95,12 @@ if (carro.length > 0) {
 
 //Aqui añado eventos al boton de añadir al carrito de cada producto,
 //recojo tambien su precio y nombre e imagen.
-//Luego con array some() y array index() compruebo si el producto ya esta en el carrito,
-//si lo está, aumentamos la cantidad de dicho producto, si no lo está, creamos un objeto carrito
-//con dicho producto y lo añadimos al array de carrito, tambien remuevo la clase "carrito-escondido"
+//Luego con array some() y array index() compruebo
+//si el producto ya esta en el carrito,
+//si lo está, aumentamos la cantidad de dicho producto,
+//si no lo está, creamos un objeto carrito
+//con dicho producto y lo añadimos al array de carrito,
+//tambien remuevo la clase "carrito-escondido"
 //para mostrar el carrito
 for (let i = 0; i < botonAniadirCarrito.length; i++) {
     botonAniadirCarrito[i].addEventListener('click', (e) => {
@@ -124,10 +127,13 @@ for (let i = 0; i < botonAniadirCarrito.length; i++) {
         }
     });
 }
-//Esta funcion se engarga de recorrer el carrito, recoge los precios de los productos y
-//la cantidad, entonces calcula el total de todos los productos en el carrito, y actualiza el
+//Esta funcion se engarga de recorrer el carrito,
+// recoge los precios de los productos y
+//la cantidad, entonces calcula el total de
+// todos los productos en el carrito, y actualiza el
 //elemento html donde se visualiza el total
-//Esta funcion siempre la llamo cuando cambio algo en el array del carrito, para actualizar el total de inmediato
+//Esta funcion siempre la llamo cuando cambio algo en el array del carrito,
+//para actualizar el total de inmediato
 function actualizarProductosCarrito() {
     var productoCarrito = document.getElementsByClassName('producto-carrito');
     var precioTotalCarrito = document.getElementById('precio-total-carrito');
@@ -184,10 +190,13 @@ function addProductoACarrito(producto) {
     botonEliminarDeCarrito = div.getElementsByClassName(
         'boton-eliminar-carrito'
     )[0];
-    //Una vez añadido el elemento al dom, es aqui donde tenemos que añadir los event listeners de los objetos del carrito
-    // ya que si lo intentamos añadir fuera de esta funcion, no tendra efecto ya que los elementos no
+    //Una vez añadido el elemento al dom, es aqui donde tenemos
+    //que añadir los event listeners de los objetos del carrito
+    // ya que si lo intentamos añadir fuera de esta funcion,
+    //no tendra efecto ya que los elementos no
     //existe hasta que el usuario añade el producto al carrito
-    //Asi que aqui añado event listener al input de la cantidad de producto y al boton de eliminar producto de carrito
+    //Asi que aqui añado event listener al input de la cantidad de producto
+    //y al boton de eliminar producto de carrito
 
     cantidadProducto.addEventListener('change', (e) => {
         var cant = cantidadProducto.value;
@@ -202,17 +211,18 @@ function addProductoACarrito(producto) {
     });
 
     botonEliminarDeCarrito.addEventListener('click', (e) => {
-        var indice = arrayCarrito.findIndex((p) => p.nombre == producto.nombre);
         e.target.parentElement.parentElement.parentElement.remove();
-        arrayCarrito.splice(indice, 1);
+        [producto, ...arrayCarrito] = arrayCarrito;
         actualizarProductosCarrito();
     });
 
     productosCarrito.append(div);
 }
 
-//Por ultimo tenemos la funcion validar, que se encargar de validar el fomulario de contacto que hay en el footer,
-//hago uso de expresiones regulares comunes para comprobar el email, el numero de telefono, y el nombre,
+//Por ultimo tenemos la funcion validar, que se encargar
+// de validar el fomulario de contacto que hay en el footer,
+//hago uso de expresiones regulares comunes para comprobar
+// el email, el numero de telefono, y el nombre,
 //que debera tener entre 3 y 16 caracteres
 
 function validar() {
